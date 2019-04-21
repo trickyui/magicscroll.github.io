@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Page scroll animation</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="section first" id="intro">
+        <div class="center">
+            <img src="html.png" alt="">
+            <h3>HTML 5</h3>
+        </div>
+    </div>
+    <main>
+        <div class="section desc">
+            <div class="text-center content">
+                <h2>ScrollMagic Parallax Animation</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis, harum. Culpa quia labore
+                    placeat
+                    consectetur repudiandae eum provident ab sapiente! Adipisci officiis explicabo quis reiciendis saepe
+                    perspiciatis ducimus distinctio? Eos?</p>
+            </div>
+            <div class="bg"></div>
+        </div>
+        <div class="section second" id="section2">
+            <div class="center avatar">
+                <img src="css.png" alt="">
+                <h3>CSS 3</h3>
+            </div>
+        </div>
+        <div class="section third" id="section3">
+            <div class="center avatar">
+                <img src="js.png" alt="">
+                <h3>Java Script</h3>
+            </div>
+        </div>
+        <div class="section forth" id="section4">
+            <div class="center avatar">
+                <img src="jquery.png" alt="">
+                <h3>jQuery</h3>
+            </div>
+        </div>
+    </main>
+    <script src="jquery.min.js"></script>
+    <script src="TweenMax.min.js"></script>
+    <script src="ScrollMagic.min.js"></script>
+    <script src="animation.gsap.min.js"></script>
+    <script src="debug.addIndicators.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var controller = new ScrollMagic.Controller({
+                // addIndicators: true
+            });
+
+            new ScrollMagic.Scene({
+                    triggerElement: '#intro',
+                    triggerHook: 0,
+                    duration: '20%'
+                })
+                .setPin('#intro', {
+                    pushFollowers: false
+                })
+                .addTo(controller);
+
+            new ScrollMagic.Scene({
+                    triggerElement: 'main',
+                    triggerHook: 0.4,
+                })
+                .setPin('#intro', {
+                    pushFollowers: false
+                })
+                .setClassToggle('#intro .center', "fade-out")
+                .addTo(controller);
+
+            new ScrollMagic.Scene({
+                    triggerElement: '.desc',
+                    triggerHook: 1,
+                    duration: '200%'
+                })
+                .setTween(TweenMax.from('.bg', 1, {
+                    y: '-50%',
+                    ease: Power0.easeNone
+                }))
+                .addTo(controller);
+
+            $('.avatar').each(function () {
+                new ScrollMagic.Scene({
+                        triggerElement: this,
+                        duration: '100%',
+                        triggerHook: 0.9
+
+                    })
+                    .setClassToggle(this, "fade-in")
+                    .addTo(controller);
+            });
+            // .addIndicators({
+            //     name: 'fase scene',
+            //     colorTrigger: 'black',
+            //     colorStart: '#75c695',
+            //     colorEnd: 'pink'
+            // })
+        });
+    </script>
+</body>
+
+</html>
