@@ -33,6 +33,7 @@
                 <img src="css.png" alt="">
                 <h3>CSS 3</h3>
             </div>
+            <img src="train.png" alt="" class="train">
         </div>
         <div class="section third" id="section3">
             <div class="center avatar">
@@ -78,15 +79,31 @@
                 .setClassToggle('#intro .center', "fade-out")
                 .addTo(controller);
 
+            var parallaxTl = new TimelineMax();
+            parallaxTl
+                .from('.content', 0.4, {
+                    opacity: 0,
+                    ease: Power0.easeNone
+                }, 0.4)
+                .from('.bg', 2, {
+                    y: '-50%',
+                    ease: Power0.easeNone
+                }, 0);
+
             new ScrollMagic.Scene({
                     triggerElement: '.desc',
                     triggerHook: 1,
                     duration: '200%'
                 })
-                .setTween(TweenMax.from('.bg', 1, {
-                    y: '-50%',
-                    ease: Power0.easeNone
-                }))
+                .setTween(parallaxTl)
+                .addTo(controller);
+
+            new ScrollMagic.Scene({
+                    triggerElement: '.train',
+                    triggerHook: 1,
+                    duration: '100%'
+                })
+                .setTween(TweenMax.to('.train', 1, {x: '-500%', ease: Power0.easeNone}))
                 .addTo(controller);
 
             $('.avatar').each(function () {

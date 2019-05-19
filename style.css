@@ -14,6 +14,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .text-center {
@@ -40,7 +41,7 @@ h2 {
 .desc .bg {
     position: absolute;
     width: 100%;
-    height: 140%;
+    height: 150%;
     top: 0;
     z-index: 1;
     background: url(bg01.jpg) no-repeat;
@@ -53,6 +54,13 @@ h2 {
 
 .second {
     background-color: #900048;
+}
+
+.train {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
 }
 
 .third {
