@@ -16,7 +16,10 @@ main {
     align-items: center;
     justify-content: center;
     position: relative;
+<<<<<<< HEAD
     overflow-x: hidden;
+=======
+>>>>>>> 1b9b9ec7167c873ac196d6e5e0c407d74dbc72bb
 }
 
 .text-center {
@@ -65,7 +68,11 @@ h2 {
 
 .train {
     position: absolute;
+<<<<<<< HEAD
     right: -340px;
+=======
+    right: 0;
+>>>>>>> 1b9b9ec7167c873ac196d6e5e0c407d74dbc72bb
     bottom: 0;
     z-index: 1;
 }
