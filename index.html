@@ -11,6 +11,19 @@
 </head>
 
 <body>
+    <section class="services">
+        <div class="service web">
+            <div class="item">
+                <img src="l-1.png" alt="laptop">
+            </div>
+        </div>
+        <div class="service mobile">
+            <div class="item">
+                <img src="l-2.png" alt="laptop">
+            </div>
+        </div>
+    </section>
+
     <div class="section first" id="intro">
         <div class="center">
             <img src="html.png" alt="">
@@ -33,6 +46,7 @@
                 <img src="css.png" alt="">
                 <h3>CSS 3</h3>
             </div>
+            <img src="train.png" alt="" class="train">
         </div>
         <div class="section third" id="section3">
             <div class="center avatar">
@@ -57,6 +71,25 @@
             var controller = new ScrollMagic.Controller({
                 // addIndicators: true
             });
+            new ScrollMagic.Scene({
+                    triggerElement: '.mobile',
+                    triggerHook: 1,
+                })
+                .setPin('.web', {
+                    pushFollowers: false
+                })
+                .addTo(controller);
+            new ScrollMagic.Scene({
+                    triggerElement: '.mobile',
+                    triggerHook: 0,
+                    duration: '100%'
+                })
+                .setPin('.mobile', {
+                    pushFollowers: false
+                })
+                .addTo(controller);
+
+
 
             new ScrollMagic.Scene({
                     triggerElement: '#intro',
@@ -68,6 +101,8 @@
                 })
                 .addTo(controller);
 
+
+
             new ScrollMagic.Scene({
                     triggerElement: 'main',
                     triggerHook: 0.4,
@@ -78,13 +113,32 @@
                 .setClassToggle('#intro .center', "fade-out")
                 .addTo(controller);
 
+            var parallaxTl = new TimelineMax();
+            parallaxTl
+                .from('.content', 0.4, {
+                    opacity: 0,
+                    ease: Power0.easeNone
+                }, 0.4)
+                .from('.bg', 2, {
+                    y: '-50%',
+                    ease: Power0.easeNone
+                }, 0);
+
             new ScrollMagic.Scene({
                     triggerElement: '.desc',
                     triggerHook: 1,
                     duration: '200%'
                 })
-                .setTween(TweenMax.from('.bg', 1, {
-                    y: '-50%',
+                .setTween(parallaxTl)
+                .addTo(controller);
+
+            new ScrollMagic.Scene({
+                    triggerElement: '.third',
+                    triggerHook: 1,
+                    duration: '100%'
+                })
+                .setTween(TweenMax.to('.train', 1, {
+                    x: '-500%',
                     ease: Power0.easeNone
                 }))
                 .addTo(controller);
